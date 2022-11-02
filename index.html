@@ -24,8 +24,31 @@
       </div>
       
       <div id="Search/Browse Songs" class="tabcontent">
-        <h3>test</h3>
-        <p>test</p>
+        <form action="Search_Results_and_browsePage.php">
+          <label id="labeltitle">Title</label> 
+          <input type="text" name ="title" id="title"> <br>
+          <label class="labelartist"> Artist </label>
+          <select name="artist" id="aritst">
+            <option value="0"> Select Artist</option>
+          </select> <br>
+          <label class="labelartist"> Genre </label>
+          <select  name="genre" id="genre">
+            <option value='0'>Select Genre</option> 
+          <select> <br>
+          <section class="container">
+            <div>
+            <label class="year"> Year</label><br>
+            <label class="year">Less</label> <input type="text" size="4"  placeholder="4 digits" pattern="[0-9]{4}" name="less_Year" id="less_Year"> <br>
+            <label class="year">Greater</label> <input type ="text" size="4"  placeholder="4 digits"  pattern="[0-9]{4}"  name="Greater_Year" id="greater_Year"> 
+            </div>
+            <div>
+            <label class="Popularity"> Popularity </label> <br>
+            <label class="Popularity"> Less </label> <input type ="text" size="4"  placeholder="0-100"  pattern="[0-9]{1,3}"  name="Less_Popularity" id="Less_Popularity"> <br>
+            <label class="Popularity">Greater</label> <input type ="text" size="4"  placeholder="0-100" name="Greater_Popularity"  pattern="[0-9]{1,3}"  id="Greater_Popularity"> <br>
+            </div>
+            </section>
+            <input  type="submit" name="search" value="Search" >
+        </form>
       </div>
       
       <div id="Single Song" class="tabcontent">
