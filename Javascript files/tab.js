@@ -11,3 +11,7 @@ function openPage(evt, pagename) {
     document.getElementById( pagename).style.display = "block";
     evt.currentTarget.className += " active";
   }
+
+function verifyAnswer(){
+  
+}

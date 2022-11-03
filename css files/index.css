@@ -66,3 +66,6 @@
     border: 1px solid #ccc;
     border-top: none;
   }
+  .indents{
+    padding-left: 1em;
+  }
