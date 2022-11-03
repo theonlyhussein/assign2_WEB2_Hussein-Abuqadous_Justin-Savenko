@@ -14,10 +14,14 @@
           <p>Hussein Abuqadous </p>
           <p>Justin Savenko</p>
           <a href="https://github.com/theonlyhussein/assign2_WEB2_Hussein-Abuqadous_Justin-Savenko">Github Repo</a>
+          <script src="Javascript files/tab.js"></script>
+          <script src =  "Javascript files/genres.json"></script>
+          <script src =  "Javascript files/artists.json"></script>
+          <script src="Javascript files/Search_BrowseSongs.js"></script>
+          
         </div>
       </div>
       <div class="tab">
-      <script src="Javascript files/tab.js"></script>
       <button class="tablink" onclick="openPage(event,'Search/Browse Songs')">Search/Browse Songs </button>
       <button class="tablink" onclick="openPage(event,'Single Song')" id="defaultOpen">Single Song</button>
       <button class="tablink" onclick="openPage(event,'Playlist')">Playlist</button>  
@@ -30,10 +34,16 @@
           <label class="labelartist"> Artist </label>
           <select name="artist" id="aritst">
             <option value="0"> Select Artist</option>
+            <script>
+               printArtistsOptions();
+            </script>
           </select> <br>
           <label class="labelartist"> Genre </label>
           <select  name="genre" id="genre">
             <option value='0'>Select Genre</option> 
+            <script>
+             printGenresOptions();
+            </script>
           <select> <br>
           <section class="container">
             <div>
