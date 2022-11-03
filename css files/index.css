@@ -69,3 +69,13 @@
   .indents{
     padding-left: 1em;
   }
+
+  .vl {
+    position: absolute;
+    border-left: 1px solid black;
+    height: 250px;
+    left: 18%;
+    margin-left: -3px;
+    top :15%;
+  
+  }
