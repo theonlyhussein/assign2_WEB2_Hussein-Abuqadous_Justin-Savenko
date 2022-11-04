@@ -21,21 +21,42 @@ document.querySelector("#less_Year").disabled = true;
 document.querySelector("#greater_Year").disabled=true;
 document.querySelector("#Less_Popularity").disabled=true;
 document.querySelector("#Greater_Popularity").disabled=true;
-document.querySelector("#lessYear_radio_button").disabled=true;
-document.querySelector("#greatYear_radio_button").disabled=true;
-document.querySelector("#lessPOP_radio_button").disabled=true;
-document.querySelector("#greatPOP_radio_button").disabled=true;
+document.querySelector("#lessYear_button").disabled=true;
+document.querySelector("#greatYear_button").disabled=true;
+document.querySelector("#lessPOP_button").disabled=true;
+document.querySelector("#greatPOP_button").disabled=true;
 });
 // Which radio button did the user choose? to unable the right input. to be continued ... 
 function verifyAnswer(){
   const radioButtons = document.querySelectorAll('input[name="fav"]');
   for (const radioButton of radioButtons) {
-    document.addEventListener("click", () => {
-      for (const radioButton of radioButtons) {
-          if (radioButton.checked) {
-              
-          }
-      }
-    } );
+    if (radioButton.clicked == true && radioButton.id == "title_button"){
+      document.querySelector("#title").disabled = false;
+      break;
+    }
+    else if (radioButton.clicked == true && radioButton.id == "artist_button"){
+      
+      document.querySelector("#artist").disabled = false;
+      break; 
+    }
+    else if (radioButton.clicked == true && radioButton.id == "genre_button"){
+      
+      document.querySelector("#genre").disabled = false;
+      break;
+    }
+    else if ( radioButton.id == "year_button"){
+
+      document.querySelector("#lessYear_button").disabled=false;
+      document.querySelector("#greatYear_button").disabled=false;
+      break;
+    }
+    else {
+      document.querySelector("#lessPOP_button").disabled=false;
+      document.querySelector("#greatPOP_button").disabled=false;
+      break;
+    }
+
+    
+
   }
-}
+  }

@@ -30,16 +30,16 @@
 
       <div id="Search/Browse Songs" class="tabcontent">
         <form >
-         <input type="radio" onclick = "verifyAnswer()" name="fav"> <label id="labeltitle">Title</label> 
+         <input type="radio" onclick = "verifyAnswer()" name="fav" id="title_button"> <label id="labeltitle">Title</label> 
           <input type="text" name ="title" id="title" > <br>
-          <input type="radio" onchange = "verifyAnswer()" name="fav"> <label class="labelartist"> Artist </label>
+          <input type="radio" onchange = "verifyAnswer()" name="fav" id="artist_button"> <label class="labelartist"> Artist </label>
            <select name="artist" id="artist" >
             <option value="0"> Select Artist</option>
             <script>
                printArtistsOptions();
             </script>
           </select> <br>
-          <input type="radio" onchange = "verifyAnswer()" name="fav"> <label class="labelartist"> Genre </label>
+          <input type="radio" onchange = "verifyAnswer()" name="fav" id="genre_button"> <label class="labelartist"> Genre </label>
           <select  name="genre" id="genre">
             <option value='0'>Select Genre</option> 
             <script>
@@ -48,14 +48,14 @@
           <select> <br>
           <section class="container">
             <div>
-              <input type="radio" onchange = "verifyAnswer()" name="fav"> <label class="year"> Year</label><br>
-              <div class="indents"> <input id="lessYear_radio_button" type="radio" onchange = "verifyAnswer()" name="year"> <label class="year">Less</label> <input type="text" size="4"  placeholder="4 digits" pattern="[0-9]{4}" name="less_Year" id="less_Year"> <br>
-              <input type="radio" onchange = "verifyAnswer()" name="year" id="greatYear_radio_button"> <label class="year">Greater</label> <input type ="text" size="4"  placeholder="4 digits"  pattern="[0-9]{4}"  name="Greater_Year" id="greater_Year"> </div>
+              <input type="radio" onchange = "verifyAnswer()" name="fav" id="year_button"> <label class="year"> Year</label><br>
+              <div class="indents"> <input id="lessYear_button" type="radio" onchange = "verifyAnswer()" name="year"> <label class="year">Less</label> <input type="text" size="4"  placeholder="4 digits" pattern="[0-9]{4}" name="less_Year" id="less_Year"> <br>
+              <input type="radio" onchange = "verifyAnswer()" name="year" id="greatYear_button"> <label class="year">Greater</label> <input type ="text" size="4"  placeholder="4 digits"  pattern="[0-9]{4}"  name="Greater_Year" id="greater_Year"> </div>
             </div>
             <div>
-              <input type="radio" onchange = "verifyAnswer()" name="fav">  <label class="Popularity"> Popularity </label> <br>
-              <div class="indents"><input id="lessPOP_radio_button" type="radio" onchange = "verifyAnswer()" name="pop"> <label class="Popularity"> Less </label> <input type ="text" size="4"  placeholder="0-100"  pattern="[0-9]{1,3}"  name="Less_Popularity" id="Less_Popularity"> <br>
-              <input type="radio" id="greatPOP_radio_button" onchange = "verifyAnswer()"  name="pop"> <label class="Popularity">Greater</label> <input type ="text" size="4"  placeholder="0-100" name="Greater_Popularity"  pattern="[0-9]{1,3}"  id="Greater_Popularity"> </div> <br>
+              <input type="radio" onchange = "verifyAnswer()" name="fav" id="pop_button">  <label class="Popularity"> Popularity </label> <br>
+              <div class="indents"><input id="lessPOP_button" type="radio" onchange = "verifyAnswer()" name="pop"> <label class="Popularity"> Less </label> <input type ="text" size="4"  placeholder="0-100"  pattern="[0-9]{1,3}"  name="Less_Popularity" id="Less_Popularity"> <br>
+              <input type="radio" id="greatPOP_button" onchange = "verifyAnswer()"  name="pop"> <label class="Popularity">Greater</label> <input type ="text" size="4"  placeholder="0-100" name="Greater_Popularity"  pattern="[0-9]{1,3}"  id="Greater_Popularity"> </div> <br>
             </div>
             </section>
             <input  type="submit" name="search" value="Search" >
