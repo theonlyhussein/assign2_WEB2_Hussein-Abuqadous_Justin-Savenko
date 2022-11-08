@@ -17,14 +17,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 document.querySelector("#title").disabled = true;
 document.querySelector("#artist").disabled = true;
 document.querySelector("#genre").disabled = true;
-document.querySelector("#lessYear_button").disabled = true;
-document.querySelector("#greatYear_button").disabled = true;
-document.querySelector("#lessPOP_button").disabled = true;
-document.querySelector("#greatPOP_button").disabled = true;
-document.querySelector("#Less_Popularity").disabled = true;
-document.querySelector("#Greater_Popularity").disabled = true;
-document.querySelector("#less_Year").disabled = true;
-document.querySelector("#greater_Year").disabled = true;
 });
 // Which radio button did the user choose? to unable the right input. to be continued ... 
 function verifyAnswer(){
