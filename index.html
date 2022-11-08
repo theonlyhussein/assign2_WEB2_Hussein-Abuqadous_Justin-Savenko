@@ -46,18 +46,7 @@
              printGenresOptions();
             </script>
           <select> <br>
-          <section class="container">
-            <div>
-              <input type="radio" onchange = "verifyAnswer()" name="fav" id="year_button"> <label class="year"> Year</label><br>
-              <div class="indents"> <input id="lessYear_button" type="radio" onchange = "verifyAnswerYear()" name="year"> <label class="year">Less</label> <input type="text" size="4"  placeholder="4 digits" pattern="[0-9]{4}" name="less_Year" id="less_Year"> <br>
-              <input type="radio" onchange = "verifyAnswerYear()" name="year" id="greatYear_button"> <label class="year">Greater</label> <input type ="text" size="4"  placeholder="4 digits"  pattern="[0-9]{4}"  name="Greater_Year" id="greater_Year"> </div>
-            </div>
-            <div>
-              <input type="radio" onchange = "verifyAnswer()" name="fav" id="pop_button">  <label class="Popularity"> Popularity </label> <br>
-              <div class="indents"><input id="lessPOP_button" type="radio" onchange = "verifyAnswerPop()" name="pop"> <label class="Popularity"> Less </label> <input type ="text" size="4"  placeholder="0-100"  pattern="[0-9]{1,3}"  name="Less_Popularity" id="Less_Popularity"> <br>
-              <input type="radio" id="greatPOP_button" onchange = "verifyAnswerPop()"  name="pop"> <label class="Popularity">Greater</label> <input type ="text" size="4"  placeholder="0-100" name="Greater_Popularity"  pattern="[0-9]{1,3}"  id="Greater_Popularity"> </div> <br>
-            </div>
-            </section>
+          
               <input type="reset" value="Clear"> <input  type="submit" name="search" value="Search" >
         </form>
         <div class="vl"></div>
