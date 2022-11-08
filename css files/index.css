@@ -79,3 +79,30 @@
     top :15%;
   
   }
+
+ #title{
+  position:absolute;
+   left: 100px;
+   width: 150px;
+   margin-bottom: 2px;
+ }
+ #artist{
+  position:absolute;
+   left: 100px;
+  width: 150px;
+
+ }
+
+ #genre{
+  position:absolute;
+   left: 100px;
+  width: 150px;
+ }
+
+ input[type="reset"], input[type="submit"]{
+    margin-top: 10px;
+ }
+
+div{
+  margin: 5px;
+}

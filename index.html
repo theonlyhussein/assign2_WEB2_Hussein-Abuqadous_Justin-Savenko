@@ -30,8 +30,11 @@
 
       <div id="Search/Browse Songs" class="tabcontent">
         <form >
+          <div>
          <input type="radio" onclick = "verifyAnswer()" name="fav" id="title_button"> <label id="labeltitle">Title</label> 
           <input type="text" name ="title" id="title" > <br>
+        </div>
+        <div>
           <input type="radio" onchange = "verifyAnswer()" name="fav" id="artist_button"> <label class="labelartist"> Artist </label>
            <select name="artist" id="artist" >
             <option value="0"> Select Artist</option>
@@ -39,15 +42,19 @@
                printArtistsOptions();
             </script>
           </select> <br>
+        </div>
+        <div>
           <input type="radio" onchange = "verifyAnswer()" name="fav" id="genre_button"> <label class="labelartist"> Genre </label>
           <select  name="genre" id="genre">
             <option value='0'>Select Genre</option> 
             <script>
              printGenresOptions();
             </script>
-          <select> <br>
+          </select> <br>
+        </div>
           
               <input type="reset" value="Clear"> <input  type="submit" name="search" value="Search" >
+        
         </form>
         <div class="vl"></div>
       </div>
