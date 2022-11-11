@@ -51,10 +51,9 @@ function verifyAnswer(){
 
 /* The following is in assign2.js as well but Unsure if we need that file at all need further information */
 
-/* The following three lines declare the api variable connect to the api and locally store the data and then store data in variable from local memory */
+/* The following two lines declare the api variable connect to the api and locally store the data and then store data in variable from local memory */
 
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
-grabAndStoreData();
 const songs = retreiveStoredData('songs');
 
 
@@ -72,6 +71,9 @@ function grabAndStoreData() {
 /* Returns data based off serial identifier for this assignment serial will always be 'songs' */
 
 function retreiveStoredData(serial) {
+  if(localStorage.getItem(serial) == null) {
+    grabAndStoreData();
+  }
   return JSON.parse(localStorage.getItem(serial));
 }
   

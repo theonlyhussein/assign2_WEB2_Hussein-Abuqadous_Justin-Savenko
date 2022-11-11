@@ -18,9 +18,12 @@ fetch(api)
 
 /* Returns data based off serial identifier for this assignment serial will always be 'songs' */
 
-    function retreiveStoredData(serial) {
-        return JSON.parse(localStorage.getItem(serial));
+function retreiveStoredData(serial) {
+    if(localStorage.getItem(serial) == null) {
+      grabAndStoreData();
     }
+    return JSON.parse(localStorage.getItem(serial));
+  }
 
 /* note: you may get a CORS error if you try fetching this locally (i.e., directly from a
    local file). To work correctly, this needs to be tested on a local web server.  
