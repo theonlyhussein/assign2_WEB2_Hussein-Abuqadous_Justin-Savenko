@@ -82,27 +82,54 @@
 
  #title{
   position:absolute;
-   left: 100px;
+   left: 120px;
    width: 150px;
    margin-bottom: 2px;
  }
  #artist{
   position:absolute;
-   left: 100px;
+   left: 120px;
   width: 150px;
 
  }
 
  #genre{
   position:absolute;
-   left: 100px;
+   left: 120px;
   width: 150px;
  }
 
  input[type="reset"], input[type="submit"]{
     margin-top: 10px;
+    margin-left: 20px;
  }
 
 div{
   margin: 5px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 300px 1160px;
+  gap: 10px;
+  
+}
+#grid-item1 {
+  padding-top : 15px;
+  padding-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  width: 250px;
+}
+
+#grid-item2 {
+  padding-top : 15px;
+  padding-bottom: 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  max-height: 450px;
+  overflow: scroll;
+}
+
+td{
+  text-align: center;
 }

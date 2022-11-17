@@ -5,6 +5,7 @@
    <title>Assignment 2 Song WEB</title>
    <link rel="stylesheet" type="text/css" href="css files/index.css" />
    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="https://kit.fontawesome.com/7fad4e8b37.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="dropdown" >
@@ -27,9 +28,10 @@
       <button class="tablink" onclick="openPage(event,'Playlist')">Playlist</button>  
       </div>
     
-
       <div id="Search/Browse Songs" class="tabcontent">
-        <form >
+        <div class="grid-container">
+        <div id="grid-item1">
+        <form method="get" action="#" id="Form">
           <div>
          <input type="radio" onclick = "verifyAnswer()" name="fav" id="title_button"> <label id="labeltitle">Title</label> 
           <input type="text" name ="title" id="title" > <br>
@@ -48,17 +50,29 @@
           <select  name="genre" id="genre">
             <option value='0'>Select Genre</option> 
             <script>
-             printGenresOptions();
-            </script>
+              printGenresOptions();
+           </script>
           </select> <br>
         </div>
-          
-              <input type="reset" value="Clear"> <input  type="submit" name="search" value="Search" >
-        
+              <input type="reset" value="Clear">  <input type="submit" value="submit">
         </form>
-        <div class="vl"></div>
+        <div id="errors" class="hidden"></div>
       </div>
-      
+      <div id="grid-item2">
+        <table style="width:100%">
+          <tr id="sort">
+            <th>Title <i class="fa-solid fa-caret-down" id="sort_title"></i></th>
+            <th>Artist <i class="fa-solid fa-caret-down" id="sort_artist"></i></th>
+            <th>Year <i class="fa-solid fa-caret-down" id="sort_year"></i></th>
+            <th>Genre <i class="fa-solid fa-caret-down" id="sort_genre"></i></th>
+            <th>Popularity <i class="fa-solid fa-caret-down" id="sort_popularity"></i> </th>
+          </tr>
+          
+        
+        </table>
+      </div>
+      </div>
+      </div>
       <div id="Single Song" class="tabcontent">
         <h3>Test</h3>
         <p>test</p> 
