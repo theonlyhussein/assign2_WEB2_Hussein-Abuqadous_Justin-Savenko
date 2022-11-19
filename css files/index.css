@@ -133,3 +133,12 @@ div{
 td{
   text-align: center;
 }
+
+.chart{
+  float: right;
+  height: 400px;
+  width: 400px;
+}
+#songDetail{
+  list-style: none;
+}

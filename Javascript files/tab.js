@@ -1,4 +1,4 @@
-function openPage(evt, pagename) {
+const openPage = (evt, pagename) => {
     let i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -10,5 +10,5 @@ function openPage(evt, pagename) {
     }
     document.getElementById( pagename).style.display = "block";
     evt.currentTarget.className += " active";
-  }
+  };
  

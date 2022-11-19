@@ -22,6 +22,7 @@ const artistsOptions = JSON.parse(artists);
 const genreOptions = JSON.parse(genres);
 const searchResults = [];
 
+
 function printGenresOptions(){
     for( op of genreOptions ){
       document.write(`<option value="${op.id}"> ${op.name} </option>`);
@@ -225,3 +226,27 @@ document.querySelector("#sort").addEventListener("click", function (e) {
   } 
 });
 });
+function outputChart(){
+  const songChart = document.getElementById('songChart');
+  Chart.defaults.scale.ticks.beginAtZero = true;
+
+  new Chart(songChart, {
+    type: 'radar',
+    data: {
+      labels: ["Danceability", "Energy", "Valence", "Speechiness", "Loudness", "Liveness"],
+      datasets: [
+        {
+          label: "Song Title Here",
+          backgroundColor: "rgba(79, 255, 4, 0.48)",
+          borderColor: "rgb(79, 255, 4)",
+          data: [77, 22, 36, 44, 88, 69]
+        }
+      ]
+    },
+      options: {
+        maintainAspectRatio: false,
+      }
+  });  
+}
+
+
