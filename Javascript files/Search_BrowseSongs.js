@@ -119,6 +119,7 @@ function output_Results(){
     for (let searchResult of searchResults){
     let tr = document.createElement("tr");
     tr.classList.add("results");
+    tr.setAttribute("data-id",searchResult.song_id);
     table.appendChild(tr);
       let td1 = document.createElement("td");
       let td2 = document.createElement("td");
@@ -248,5 +249,13 @@ function outputChart(){
       }
   });  
 }
-
+function findSong(songID){
+  let result;
+  for(let song of searchResults){
+    if(songID == song.song_id) {
+      result = song;
+    }
+  }
+  return result;
+}
 
