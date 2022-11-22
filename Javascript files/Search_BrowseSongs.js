@@ -1,12 +1,19 @@
 /* The following is in assign2.js as well but Unsure if we need that file at all need further information */
 /* The following two lines declare the api variable connect to the api and locally store the data and then store data in variable from local memory */
 const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
-  /* Grab data handle promise and store locally */
+  /* This function grabs the data from the api, checks to make sure if received promise, if received deal with promise and store locally
+     if not then throw error for response and catch all other errors
+ */
 function grabAndStoreData() {
   fetch(api)
-      .then( response => response.json() )
-      .then( data => {
-          localStorage.setItem('songs', JSON.stringify(data));
+      .then( response => {
+        if(response.ok) {
+          response.json().then(data => {
+            localStorage.setItem('songs', JSON.stringify(data));
+          })
+        }else{
+          throw new Error('Fetch Failed');
+        }
       })
       .catch( error => { console.error(error) } );
   }
@@ -17,27 +24,34 @@ function retreiveStoredData(serial) {
   }
   return JSON.parse(localStorage.getItem(serial));
 }
-const songs = retreiveStoredData('songs'); 
-const artistsOptions = JSON.parse(artists);
-const genreOptions = JSON.parse(genres);
-const searchResults = [];
+const songs = retreiveStoredData('songs'); // array of song data from api
+const artistsOptions = JSON.parse(artists); // array of artists
+const genreOptions = JSON.parse(genres); // array of genres
+const searchResults = []; // initialization of search results array that will be added to based off user input
 
-
+/* This function prints out the genre options the user is able to select from */
 function printGenresOptions(){
     for( op of genreOptions ){
       document.write(`<option value="${op.id}"> ${op.name} </option>`);
     }  
 }
+/* This function prints out the artist options the user is able to select from */
 function printArtistsOptions(){
     for( op of artistsOptions ){
       document.write(`<option value="${op.id}"> ${op.name} </option>`);
     }  
 }
+/* initialization of radio button disable by default until user clicks on radio button */
 document.addEventListener("DOMContentLoaded", function(event) {
 document.querySelector("#title").disabled = true;
 document.querySelector("#artist").disabled = true;
 document.querySelector("#genre").disabled = true;
 });
+/* This function controls the disabling of the input boxes correlated to radio button 
+   activation from the user input and activation of input boxes that the user selects
+   also grabs user input once submit button is clicked and searches the songs array for 
+   user request and pushes results to the searchResults array and calls output function
+*/
 function verifyAnswer(){
   const radioButtons = document.querySelectorAll('input[name="fav"]');
   for (const radioButton of radioButtons) {
@@ -107,7 +121,7 @@ function verifyAnswer(){
     }  
   }
 }
-
+/* This function outputs the searchResults array to the table based off user input */
 function output_Results(){
   const  table = document.querySelector("table");
   const pervous_results = document.querySelectorAll("tr");
@@ -140,6 +154,9 @@ function output_Results(){
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
+/* event function that sorts the results on title, artist, year, genre, and popularity based 
+   off user click event in descending order 
+*/
 document.querySelector("#sort").addEventListener("click", function (e) {
   if ( e.target.nodeName == "I" && e.target.getAttribute("id") == "sort_title" ){
     e.target.className="fa-regular fa-square-caret-down";
@@ -227,6 +244,7 @@ document.querySelector("#sort").addEventListener("click", function (e) {
   } 
 });
 });
+/* This function outputs the radar chart based off user selection of song */
 function outputChart(){
   const songChart = document.getElementById('songChart');
   Chart.defaults.scale.ticks.beginAtZero = true;
@@ -249,6 +267,9 @@ function outputChart(){
       }
   });  
 }
+/* This function searches through the searchResults array instead of songs array for optimization
+   and finds the song ID the user selects and returns the song object
+*/
 function findSong(songID){
   let result;
   for(let song of searchResults){
