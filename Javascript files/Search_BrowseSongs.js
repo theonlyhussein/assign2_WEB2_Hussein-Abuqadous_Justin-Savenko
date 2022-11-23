@@ -4,21 +4,18 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
   /* This function grabs the data from the api, checks to make sure if received promise, if received deal with promise and store locally
      if not then throw error for response and catch all other errors
  */
-function grabAndStoreData() {
-  fetch(api)
-      .then( response => {
-        if(response.ok) {
-          response.json().then(data => {
-            localStorage.setItem('songs', JSON.stringify(data));
+      // if statement for response.ok screws this function up come back to
+     function grabAndStoreData() {
+      fetch(api)
+          .then( response => response.json() )
+          .then( data => {
+              localStorage.setItem('songs', JSON.stringify(data));
           })
-        }else{
-          throw new Error('Fetch Failed');
-        }
-      })
-      .catch( error => { console.error(error) } );
-  }
+          .catch( error => { console.error(error) } );
+      }
 /* Returns data based off serial identifier for this assignment serial will always be 'songs' */
 function retreiveStoredData(serial) {
+  localStorage.clear
   if(localStorage.getItem(serial) == null) {
     grabAndStoreData();
   }
@@ -243,6 +240,13 @@ document.querySelector("#sort").addEventListener("click", function (e) {
       output_Results();
   } 
 });
+});
+document.addEventListener("DOMContentLoaded", function(event) {
+  document.querySelectorAll('.results').addEventListener('click', function(e){
+    if(e.target && e.target.nodeName == 'PLACEHOLDER') {
+
+    }
+  });
 });
 /* This function outputs the radar chart based off user selection of song */
 function outputChart(){
