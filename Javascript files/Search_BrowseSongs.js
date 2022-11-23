@@ -4,18 +4,23 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
   /* This function grabs the data from the api, checks to make sure if received promise, if received deal with promise and store locally
      if not then throw error for response and catch all other errors
  */
-      // if statement for response.ok screws this function up come back to
      function grabAndStoreData() {
-      fetch(api)
-          .then( response => response.json() )
-          .then( data => {
-              localStorage.setItem('songs', JSON.stringify(data));
-          })
-          .catch( error => { console.error(error) } );
+      fetch(api).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Fetched Failed');
+      })
+      .then((data) => {
+        console.log('Hello');
+        localStorage.setItem('songs', JSON.stringify(data));
+      })
+      .catch((error) => {
+        console.log(error)
+      });
       }
 /* Returns data based off serial identifier for this assignment serial will always be 'songs' */
 function retreiveStoredData(serial) {
-  localStorage.clear
   if(localStorage.getItem(serial) == null) {
     grabAndStoreData();
   }
