@@ -38,7 +38,6 @@
   h1{
     text-align: center;
   }
-
   .vl {
     position: absolute;
     border-left: 1px solid black;
@@ -116,4 +115,16 @@ td{
 }
 #songDetail{
   list-style: none;
+}
+
+#SearchandBrowseSongs{
+ /* display: ;*/
+}
+
+#SingleSong{
+  display: none;
+}
+
+#Playlist{
+  display: none;
 }

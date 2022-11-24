@@ -251,8 +251,8 @@ document.addEventListener("DOMContentLoaded", function() {
           const item = e.target.parentElement.getAttribute("data-id");
           const songObj = findSong(item);
           console.log(songObj.title, songObj.analytics.danceability, songObj.analytics.energy,songObj.analytics.valence, songObj.analytics.speechiness, songObj.details.loudness, songObj.analytics.liveness);
-          const searchPage = document.querySelector('#Search/Browse Songs');
-          const singlePage = document.querySelector('#Single Song');
+          const searchPage = document.querySelector('#SearchandBrowseSongs');
+          const singlePage = document.querySelector('#SingleSong');
           const playlist = document.querySelector('#Playlist');
           searchPage.style.display = "none"; // uncaught type error: cannot read properties of null (reading 'style').... is tabs.js the problem?
           playlist.style.display = "none";
