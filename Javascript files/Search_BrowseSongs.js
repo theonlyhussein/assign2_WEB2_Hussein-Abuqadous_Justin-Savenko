@@ -252,7 +252,11 @@ document.addEventListener("DOMContentLoaded", function() {
       for(let tr of items){
         tr.addEventListener('click', (e) =>{
           console.log(e.target.getAttribute('data-id')); //returns null not sure why
-        })
+          // grab song id from event
+          //call find song method
+          // adjust page style through queryselections and append appropriate info to page
+          // call outputChart Method to display new chart
+        });
       }
     });
 });
