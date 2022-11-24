@@ -247,14 +247,15 @@ document.querySelector("#sort").addEventListener("click", function (e) {
 });
 });
 document.addEventListener("DOMContentLoaded", function(event) {
-  document.querySelectorAll('.results').addEventListener('click', function(e){
-    if(e.target && e.target.nodeName == 'tr') {
-      // grab song id from event
-      //call find song method
-      // adjust page style through queryselections and append appropriate info to page
-      // call outputChart Method to display new chart
+    const items = document.querySelectorAll('tr');
+    for(let tr of items) {
+      tr.addEventListener('click', (e) =>{
+        // grab song id from event
+        //call find song method
+        // adjust page style through queryselections and append appropriate info to page
+        // call outputChart Method to display new chart
+      });
     }
-  });
 });
 /* This function outputs the radar chart based off user selection of song */
 function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,liveness){
