@@ -248,13 +248,16 @@ document.querySelector("#sort").addEventListener("click", function (e) {
 });
 document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelectorAll('.results').addEventListener('click', function(e){
-    if(e.target && e.target.nodeName == 'PLACEHOLDER') {
-
+    if(e.target && e.target.nodeName == 'tr') {
+      // grab song id from event
+      //call find song method
+      // adjust page style through queryselections and append appropriate info to page
+      // call outputChart Method to display new chart
     }
   });
 });
 /* This function outputs the radar chart based off user selection of song */
-function outputChart(){
+function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,liveness){
   const songChart = document.getElementById('songChart');
   Chart.defaults.scale.ticks.beginAtZero = true;
 
@@ -264,10 +267,10 @@ function outputChart(){
       labels: ["Danceability", "Energy", "Valence", "Speechiness", "Loudness", "Liveness"],
       datasets: [
         {
-          label: "Song Title Here",
+          label: songTitle.toString(),
           backgroundColor: "rgba(79, 255, 4, 0.48)",
           borderColor: "rgb(79, 255, 4)",
-          data: [77, 22, 36, 44, 88, 69]
+          data: [danceability, energy, valence, speechiness, loudness, liveness]
         }
       ]
     },
