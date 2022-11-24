@@ -249,11 +249,17 @@ document.querySelector("#sort").addEventListener("click", function (e) {
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#grid-item2').addEventListener('click', function(e) {
           const item = e.target.parentElement.getAttribute("data-id");
-          
-          // grab song id from event
-          //call find song method
-          // adjust page style through queryselections and append appropriate info to page
+          const songObj = findSong(item);
+          console.log(songObj.title, songObj.analytics.danceability, songObj.analytics.energy,songObj.analytics.valence, songObj.analytics.speechiness, songObj.details.loudness, songObj.analytics.liveness);
+          const searchPage = document.querySelector('#Search/Browse Songs');
+          const singlePage = document.querySelector('#Single Song');
+          const playlist = document.querySelector('#Playlist');
+          searchPage.style.display = "none"; // uncaught type error: cannot read properties of null (reading 'style').... is tabs.js the problem?
+          playlist.style.display = "none";
+          singlePage.style.display = "block";
+          // append appropriate info to page
           // call outputChart Method to display new chart
+          outputChart(songObj.title,songObj.analytics.danceability,songObj.analytics.energy,songObj.analytics.valence,songObj.analytics.speechiness,songObj.details.loudness,songObj.analytics.liveness);
         
       
     });
@@ -285,12 +291,8 @@ function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,
    and finds the song ID the user selects and returns the song object
 */
 function findSong(songID){
-  let result;
-  for(let song of searchResults){
-    if(songID == song.song_id) {
-      result = song;
-    }
-  }
+  let result = searchResults.find(s => s.song_id == songID );
   return result;
 }
+
 
