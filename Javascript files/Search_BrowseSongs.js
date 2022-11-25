@@ -143,6 +143,21 @@ function output_Results(){
       let td3 = document.createElement("td");
       let td4 = document.createElement("td");
       let td5 = document.createElement("td");
+      let td6 = document.createElement("td");
+      let td7 = document.createElement("td");
+      let btn1 = document.createElement('input');
+      let btn2 = document.createElement('input');
+      btn1.type = 'button';
+      btn1.className = 'singleBtn';
+      btn1.value = 'View Song';
+      btn1.setAttribute('data-id',searchResult.song_id);
+      btn1.setAttribute('data-artistID',searchResult.artist.id);
+      btn2.type = 'button';
+      btn2.className = 'favBtn';
+      btn2.value = 'Add to Favourites';
+      btn2.setAttribute('data-id',searchResult.song_id);
+      td6.appendChild(btn1);
+      td7.appendChild(btn2);
       td1.appendChild(document.createTextNode(searchResult.title));
       td2.appendChild(document.createTextNode(searchResult.artist.name));
       td3.appendChild(document.createTextNode(searchResult.year));
@@ -153,6 +168,8 @@ function output_Results(){
       tr.appendChild(td3);
       tr.appendChild(td4);
       tr.appendChild(td5);
+      tr.appendChild(td6);
+      tr.appendChild(td7);
     }      
 }
 
@@ -252,8 +269,9 @@ document.querySelector("#sort").addEventListener("click", function (e) {
 */
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#grid-item2').addEventListener('click', function(e) {
-          const item = e.target.parentElement.getAttribute("data-id");
-          const item2 = e.target.parentElement.getAttribute('data-artistID');
+          console.log(e.target.getAttribute('data-id'));
+          const item = e.target.getAttribute("data-id");
+          const item2 = e.target.getAttribute('data-artistID');
           const songObj = findSong(item);
           const artistObj = findArtist(item2);
           console.log(songObj.title, songObj.analytics.danceability, songObj.analytics.energy,songObj.analytics.valence, songObj.analytics.speechiness, songObj.details.loudness, songObj.analytics.liveness);
