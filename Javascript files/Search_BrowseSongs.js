@@ -247,6 +247,9 @@ document.querySelector("#sort").addEventListener("click", function (e) {
   } 
 });
 });
+/* this function is activated when the user clicks on the table and causes the display 
+   of singleSong to be shown and also when the clear button is clicked on that display returns it back to the SearchandBrowseSongs view
+*/
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#grid-item2').addEventListener('click', function(e) {
           const item = e.target.parentElement.getAttribute("data-id");
@@ -260,9 +263,19 @@ document.addEventListener("DOMContentLoaded", function() {
           searchPage.style.display = "none"; 
           playlist.style.display = "none";
           singlePage.style.display = "block";
-          // append appropriate info to page
           outputData(songObj,artistObj);
-          outputChart(songObj.title,songObj.analytics.danceability,songObj.analytics.energy,songObj.analytics.valence,songObj.analytics.speechiness,songObj.details.loudness,songObj.analytics.liveness);
+          const chart = outputChart(songObj.title,songObj.analytics.danceability,songObj.analytics.energy,songObj.analytics.valence,songObj.analytics.speechiness,songObj.details.loudness,songObj.analytics.liveness);
+          // clear data and switch views when clear button clicked porition
+          document.querySelector('#singleClear').addEventListener('click', function() {
+            clearData();
+            chart.destroy();
+            const searchPage = document.querySelector('#SearchandBrowseSongs');
+            const singlePage = document.querySelector('#SingleSong');
+            const playlist = document.querySelector('#Playlist');
+            searchPage.style.display = "block"; 
+            playlist.style.display = "none";
+            singlePage.style.display = "none";
+          });
         
       
     });
@@ -272,7 +285,7 @@ function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,
   const songChart = document.getElementById('songChart');
   //Chart.defaults.scale.ticks.beginAtZero = true;
 
-  new Chart(songChart, {
+  let chartData = new Chart(songChart, {
     type: 'radar',
     data: {
       labels: ["Danceability", "Energy", "Valence", "Speechiness", "Loudness", "Liveness"],
@@ -288,7 +301,8 @@ function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,
       options: {
         maintainAspectRatio: false,
       }
-  });  
+  });
+  return chartData;  
 }
 /* This function searches through the searchResults array instead of songs array for optimization
    and finds the song ID the user selects and returns the song object
@@ -297,7 +311,8 @@ function findSong(songID){
     let result = searchResults.find(s => s.song_id == songID );
     return result;
   }
-
+/* This function searches through the artist Json and finds the Artist type and returns the artist type string
+*/
 function findArtist(artistID){
   let artistType;
   for( op of artistsOptions ){
@@ -307,7 +322,8 @@ function findArtist(artistID){
   }
   return artistType;  
 }
-
+/* This function outputs the data lists for the corresponding song object and artist type string
+*/
 function outputData(songObj,artistObj){
   const ul = document.querySelector('#songDetail');
   const songTitle = document.createElement('li');
@@ -390,3 +406,16 @@ function outputData(songObj,artistObj){
   popularity.appendChild(popularityProg);
   ul2.appendChild(popularity);
 }
+/* This function loops through the children of parent node elements and removes them */
+function clearData() {
+  const dataset1 = document.querySelector('#songDetail');
+  const dataset2 = document.querySelector('#songBreakdown');
+  while(dataset1.hasChildNodes()) {
+    dataset1.removeChild(dataset1.childNodes[0]);
+  }
+  while(dataset2.hasChildNodes()) {
+    dataset2.removeChild(dataset2.childNodes[0]);
+  }
+}
+
+
