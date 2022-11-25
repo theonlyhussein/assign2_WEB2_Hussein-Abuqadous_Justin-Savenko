@@ -158,6 +158,36 @@ function output_Results(){
       btn2.setAttribute('data-id',searchResult.song_id);
       td6.appendChild(btn1);
       td7.appendChild(btn2);
+      btn1.addEventListener('click',function(e) {
+          /* this function is activated when the user clicks on the table and causes the display 
+             of singleSong to be shown and also when the clear button is clicked on that display 
+             returns it back to the SearchandBrowseSongs view
+          */
+          const item = e.target.getAttribute("data-id");
+          const item2 = e.target.getAttribute('data-artistID');
+          const songObj = findSong(item);
+          const artistObj = findArtist(item2);
+          console.log(songObj.title, songObj.analytics.danceability, songObj.analytics.energy,songObj.analytics.valence, songObj.analytics.speechiness, songObj.details.loudness, songObj.analytics.liveness);
+          const searchPage = document.querySelector('#SearchandBrowseSongs');
+          const singlePage = document.querySelector('#SingleSong');
+          const playlist = document.querySelector('#Playlist');
+          searchPage.style.display = "none"; 
+          playlist.style.display = "none";
+          singlePage.style.display = "block";
+          outputData(songObj,artistObj);
+          const chart = outputChart(songObj.title,songObj.analytics.danceability,songObj.analytics.energy,songObj.analytics.valence,songObj.analytics.speechiness,songObj.details.loudness,songObj.analytics.liveness);
+          // clear data and switch views when clear button clicked porition
+          document.querySelector('#singleClear').addEventListener('click', function() {
+            clearData();
+            chart.destroy();
+            const searchPage = document.querySelector('#SearchandBrowseSongs');
+            const singlePage = document.querySelector('#SingleSong');
+            const playlist = document.querySelector('#Playlist');
+            searchPage.style.display = "block"; 
+            playlist.style.display = "none";
+            singlePage.style.display = "none";
+          });
+      });
       td1.appendChild(document.createTextNode(searchResult.title));
       td2.appendChild(document.createTextNode(searchResult.artist.name));
       td3.appendChild(document.createTextNode(searchResult.year));
@@ -263,40 +293,6 @@ document.querySelector("#sort").addEventListener("click", function (e) {
       output_Results();
   } 
 });
-});
-/* this function is activated when the user clicks on the table and causes the display 
-   of singleSong to be shown and also when the clear button is clicked on that display returns it back to the SearchandBrowseSongs view
-*/
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector('#grid-item2').addEventListener('click', function(e) {
-          console.log(e.target.getAttribute('data-id'));
-          const item = e.target.getAttribute("data-id");
-          const item2 = e.target.getAttribute('data-artistID');
-          const songObj = findSong(item);
-          const artistObj = findArtist(item2);
-          console.log(songObj.title, songObj.analytics.danceability, songObj.analytics.energy,songObj.analytics.valence, songObj.analytics.speechiness, songObj.details.loudness, songObj.analytics.liveness);
-          const searchPage = document.querySelector('#SearchandBrowseSongs');
-          const singlePage = document.querySelector('#SingleSong');
-          const playlist = document.querySelector('#Playlist');
-          searchPage.style.display = "none"; 
-          playlist.style.display = "none";
-          singlePage.style.display = "block";
-          outputData(songObj,artistObj);
-          const chart = outputChart(songObj.title,songObj.analytics.danceability,songObj.analytics.energy,songObj.analytics.valence,songObj.analytics.speechiness,songObj.details.loudness,songObj.analytics.liveness);
-          // clear data and switch views when clear button clicked porition
-          document.querySelector('#singleClear').addEventListener('click', function() {
-            clearData();
-            chart.destroy();
-            const searchPage = document.querySelector('#SearchandBrowseSongs');
-            const singlePage = document.querySelector('#SingleSong');
-            const playlist = document.querySelector('#Playlist');
-            searchPage.style.display = "block"; 
-            playlist.style.display = "none";
-            singlePage.style.display = "none";
-          });
-        
-      
-    });
 });
 /* This function outputs the radar chart based off user selection of song */
 function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,liveness){
