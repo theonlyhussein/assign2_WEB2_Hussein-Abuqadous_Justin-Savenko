@@ -136,6 +136,7 @@ function output_Results(){
     let tr = document.createElement("tr");
     tr.className = "results";
     tr.setAttribute("data-id",searchResult.song_id);
+    tr.setAttribute('data-artistID',searchResult.artist.id);
     table.appendChild(tr);
       let td1 = document.createElement("td");
       let td2 = document.createElement("td");
@@ -249,16 +250,18 @@ document.querySelector("#sort").addEventListener("click", function (e) {
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#grid-item2').addEventListener('click', function(e) {
           const item = e.target.parentElement.getAttribute("data-id");
+          const item2 = e.target.parentElement.getAttribute('data-artistID');
           const songObj = findSong(item);
+          const artistObj = findArtist(item2);
           console.log(songObj.title, songObj.analytics.danceability, songObj.analytics.energy,songObj.analytics.valence, songObj.analytics.speechiness, songObj.details.loudness, songObj.analytics.liveness);
           const searchPage = document.querySelector('#SearchandBrowseSongs');
           const singlePage = document.querySelector('#SingleSong');
           const playlist = document.querySelector('#Playlist');
-          searchPage.style.display = "none"; // uncaught type error: cannot read properties of null (reading 'style').... is tabs.js the problem?
+          searchPage.style.display = "none"; 
           playlist.style.display = "none";
           singlePage.style.display = "block";
           // append appropriate info to page
-          // call outputChart Method to display new chart
+          outputData(songObj,artistObj);
           outputChart(songObj.title,songObj.analytics.danceability,songObj.analytics.energy,songObj.analytics.valence,songObj.analytics.speechiness,songObj.details.loudness,songObj.analytics.liveness);
         
       
@@ -267,7 +270,7 @@ document.addEventListener("DOMContentLoaded", function() {
 /* This function outputs the radar chart based off user selection of song */
 function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,liveness){
   const songChart = document.getElementById('songChart');
-  Chart.defaults.scale.ticks.beginAtZero = true;
+  //Chart.defaults.scale.ticks.beginAtZero = true;
 
   new Chart(songChart, {
     type: 'radar',
@@ -291,8 +294,99 @@ function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,
    and finds the song ID the user selects and returns the song object
 */
 function findSong(songID){
-  let result = searchResults.find(s => s.song_id == songID );
-  return result;
+    let result = searchResults.find(s => s.song_id == songID );
+    return result;
+  }
+
+function findArtist(artistID){
+  let artistType;
+  for( op of artistsOptions ){
+    if(op.id == artistID) {
+      artistType = `${op.type}`;
+    }
+  }
+  return artistType;  
 }
 
+function outputData(songObj,artistObj){
+  const ul = document.querySelector('#songDetail');
+  const songTitle = document.createElement('li');
+  const artistName = document.createElement('li');
+  const artistType = document.createElement('li');
+  const genre = document.createElement('li');
+  const year = document.createElement('li');
+  const duration = document.createElement('li');
+  const ul2 = document.querySelector('#songBreakdown');
+  const secondTime = songObj.details.duration % 60;
+  const minTime = Math.trunc(songObj.details.duration / 60);
+  const bpm = document.createElement('li');
+  const bpmProg = document.createElement('progress');
+  const energy = document.createElement('li');
+  const energyProg = document.createElement('progress');
+  const danceability = document.createElement('li');
+  const danceabilityProg = document.createElement('progress');
+  const liveness = document.createElement('li');
+  const livenessProg = document.createElement('progress');
+  const valence = document.createElement('li');
+  const valenceProg = document.createElement('progress');
+  const acousticness = document.createElement('li');
+  const acousticnessProg = document.createElement('progress');
+  const speechiness = document.createElement('li');
+  const speechinessProg = document.createElement('progress');
+  const popularity = document.createElement('li');
+  const popularityProg = document.createElement('progress');
 
+  songTitle.textContent = `Song Title: ${songObj.title}`;
+  ul.appendChild(songTitle);
+  artistName.textContent = `Artist Name: ${songObj.artist.name}`;
+  ul.appendChild(artistName);
+  artistType.textContent = `Artist Type: ${artistObj}`;
+  ul.appendChild(artistType);
+  genre.textContent = `Genre: ${songObj.genre.name}`;
+  ul.appendChild(genre);
+  year.textContent = `Year: ${songObj.year}`;
+  ul.appendChild(year);
+  duration.textContent = `Duration: ${minTime}:${secondTime}`;
+  ul.appendChild(duration);
+  bpmProg.setAttribute('value', songObj.details.bpm);
+  bpmProg.setAttribute('max', 200);
+  bpm.textContent = `BPM - ${songObj.details.bpm}`;
+  bpm.setAttribute('id', 'analysisBPM');
+  bpm.appendChild(bpmProg);
+  ul2.appendChild(bpm);
+  energyProg.setAttribute('value', songObj.analytics.energy);
+  energyProg.setAttribute('max', 100);
+  energy.textContent = `Energy - ${songObj.analytics.energy}`;
+  energy.appendChild(energyProg);
+  ul2.appendChild(energy);
+  danceabilityProg.setAttribute('value', songObj.analytics.danceability);
+  danceabilityProg.setAttribute('max', 100);
+  danceability.textContent = `Danceability - ${songObj.analytics.danceability}`;
+  danceability.appendChild(danceabilityProg);
+  ul2.appendChild(danceability);
+  livenessProg.setAttribute('value', songObj.analytics.liveness);
+  livenessProg.setAttribute('max', 100);
+  liveness.textContent = `Liveness - ${songObj.analytics.liveness}`;
+  liveness.appendChild(livenessProg);
+  ul2.appendChild(liveness);
+  valenceProg.setAttribute('value', songObj.analytics.valence);
+  valenceProg.setAttribute('max', 100);
+  valence.textContent = `Valence - ${songObj.analytics.valence}`;
+  valence.appendChild(valenceProg);
+  ul2.appendChild(valence);
+  acousticnessProg.setAttribute('value', songObj.analytics.acousticness);
+  acousticnessProg.setAttribute('max', 100);
+  acousticness.textContent = `Acousticness - ${songObj.analytics.acousticness}`;
+  acousticness.appendChild(acousticnessProg);
+  ul2.appendChild(acousticness);
+  speechinessProg.setAttribute('value', songObj.analytics.speechiness);
+  speechinessProg.setAttribute('max', 100);
+  speechiness.textContent = `Speechiness - ${songObj.analytics.speechiness}`;
+  speechiness.appendChild(speechinessProg);
+  ul2.appendChild(speechiness);
+  popularityProg.setAttribute('value', songObj.details.popularity);
+  popularityProg.setAttribute('max', 100);
+  popularity.textContent = `Popularity - ${songObj.details.popularity}`;
+  popularity.appendChild(popularityProg);
+  ul2.appendChild(popularity);
+}

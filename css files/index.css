@@ -109,12 +109,15 @@ td{
 }
 
 .chart{
-  float: right;
+  position: absolute;
+  top: 200px;
+  left: 600px;
   height: 400px;
   width: 400px;
 }
 #songDetail{
   list-style: none;
+  position: static;
 }
 
 #SearchandBrowseSongs{
@@ -127,4 +130,8 @@ td{
 
 #Playlist{
   display: none;
+}
+progress{
+  position: absolute;
+  left: 400px;
 }

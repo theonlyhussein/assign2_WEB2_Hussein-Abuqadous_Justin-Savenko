@@ -16,7 +16,6 @@
           <p>Hussein Abuqadous </p>
           <p>Justin Savenko</p>
           <a href="https://github.com/theonlyhussein/assign2_WEB2_Hussein-Abuqadous_Justin-Savenko">Github Repo</a>
-          <script src="Javascript files/tab.js"></script>
           <script src =  "Javascript files/genres.json"></script>
           <script src =  "Javascript files/artists.json"></script>
           <script src="Javascript files/Search_BrowseSongs.js"></script>
@@ -72,29 +71,16 @@
       </div>
       </div>
       <div id="SingleSong" class="tabcontent">
+        <h2>Song Information</h2>
+        <ul id="songDetail">
+        </ul>
+        <h2>Analysis Data:</h2>
+        <ul id="songBreakdown">
+        </ul>
+        <input type="reset" value="Clear">
         <div class="chart">
           <canvas id="songChart"></canvas>
         </div>
-        <h1>Song Information</h1>
-        <ul id="songDetail">
-          <li>Song Title:</li>
-          <li>Artist Name:</li>
-          <li>Artist Type:</li>
-          <li>Genre:</li>
-          <li>Year:</li>
-          <li>Duration:</li>
-        </ul>
-        <h2>Analysis Data:</h2>
-        <ul>
-          <li>BPM - <progress value="132" max="200"></progress></li>
-          <li>Energy - <progress value="22" max="100"></progress></li>
-          <li>Danceability - <progress value="77" max="100"></progress></li>
-          <li>Liveness - <progress value="69" max="100"></progress></li>
-          <li>Valence - <progress value="36" max="100"></progress></li>
-          <li>Acousticness - <progress value="33" max="100"></progress></li>
-          <li>Speechiness - <progress value="44" max="100"></progress></li>
-          <li>Popularity - <progress value="69" max="100"></progress></li>
-        </ul>
       </div>
       
       <div id="Playlist" class="tabcontent">
