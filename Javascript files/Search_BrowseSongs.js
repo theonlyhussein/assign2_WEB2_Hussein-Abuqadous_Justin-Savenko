@@ -417,5 +417,21 @@ function clearData() {
     dataset2.removeChild(dataset2.childNodes[0]);
   }
 }
+/* The following function adds the class show to all the childNodes for id author */
+function dropDown() {
+  document.getElementById('author').classList.toggle('show');
+}
+/* The following removes show if the user clicks a secondTime on the button for dropdown-content */
+window.onclick = function(e) {
+  if(!e.target.matches('.dropbtn')) {
+    let drop = document.getElementsByClassName("dropdown-content");
+    for(let i = 0; i < drop.length; i++) {
+      let openDrop = drop[i];
+      if(openDrop.classList.contains('show')) {
+        openDrop.classList.remove('show');
+      }
+    }
+  }
+}
 
 
