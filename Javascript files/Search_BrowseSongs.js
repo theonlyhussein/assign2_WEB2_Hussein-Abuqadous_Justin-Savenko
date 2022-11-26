@@ -125,7 +125,7 @@ function verifyAnswer(){
 }
 /* This function outputs the searchResults array to the table based off user input */
 function output_Results(){
-  const  table = document.querySelector("table");
+  const  table = document.querySelector("*Results_table");
   const pervous_results = document.querySelectorAll("tr");
   for(let pervous_result of pervous_results){
     if(pervous_result.className == "results"){
@@ -294,8 +294,9 @@ document.querySelector("#sort").addEventListener("click", function (e) {
   } 
 });
 });
-// to work in another file
-export default searchResults;
+//export 
+export default  myArr = searchResults;
+
 /* This function outputs the radar chart based off user selection of song */
 function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,liveness){
   const songChart = document.getElementById('songChart');
