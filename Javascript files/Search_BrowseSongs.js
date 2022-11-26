@@ -154,7 +154,7 @@ function output_Results(){
       btn1.setAttribute('data-artistID',searchResult.artist.id);
       btn2.type = 'button';
       btn2.className = 'favBtn';
-      btn2.value = 'Add to Favourites';
+      btn2.value = 'Add to Playlist';
       btn2.setAttribute('data-id',searchResult.song_id);
       td6.appendChild(btn1);
       td7.appendChild(btn2);
@@ -294,6 +294,8 @@ document.querySelector("#sort").addEventListener("click", function (e) {
   } 
 });
 });
+// to work in another file
+export default searchResults;
 /* This function outputs the radar chart based off user selection of song */
 function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,liveness){
   const songChart = document.getElementById('songChart');
