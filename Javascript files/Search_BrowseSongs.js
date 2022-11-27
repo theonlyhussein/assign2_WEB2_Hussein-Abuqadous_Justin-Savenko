@@ -125,7 +125,7 @@ function verifyAnswer(){
 }
 /* This function outputs the searchResults array to the table based off user input */
 function output_Results(){
-  const  table = document.querySelector("*Results_table");
+  const  table = document.querySelector("#Results_table");
   const pervous_results = document.querySelectorAll("tr");
   for(let pervous_result of pervous_results){
     if(pervous_result.className == "results"){
@@ -149,7 +149,7 @@ function output_Results(){
       let btn2 = document.createElement('input');
       btn1.type = 'button';
       btn1.className = 'singleBtn';
-      btn1.value = 'View Song';
+      btn1.value = 'View Details';
       btn1.setAttribute('data-id',searchResult.song_id);
       btn1.setAttribute('data-artistID',searchResult.artist.id);
       btn2.type = 'button';
@@ -158,6 +158,9 @@ function output_Results(){
       btn2.setAttribute('data-id',searchResult.song_id);
       td6.appendChild(btn1);
       td7.appendChild(btn2);
+      const searchPage = document.querySelector('#SearchandBrowseSongs');
+      const singlePage = document.querySelector('#SingleSong');
+      const playlist = document.querySelector('#Playlist');
       btn1.addEventListener('click',function(e) {
           /* this function is activated when the user clicks on the table and causes the display 
              of singleSong to be shown and also when the clear button is clicked on that display 
@@ -168,9 +171,7 @@ function output_Results(){
           const songObj = findSong(item);
           const artistObj = findArtist(item2);
           console.log(songObj.title, songObj.analytics.danceability, songObj.analytics.energy,songObj.analytics.valence, songObj.analytics.speechiness, songObj.details.loudness, songObj.analytics.liveness);
-          const searchPage = document.querySelector('#SearchandBrowseSongs');
-          const singlePage = document.querySelector('#SingleSong');
-          const playlist = document.querySelector('#Playlist');
+          
           searchPage.style.display = "none"; 
           playlist.style.display = "none";
           singlePage.style.display = "block";
@@ -180,13 +181,62 @@ function output_Results(){
           document.querySelector('#singleClear').addEventListener('click', function() {
             clearData();
             chart.destroy();
-            const searchPage = document.querySelector('#SearchandBrowseSongs');
-            const singlePage = document.querySelector('#SingleSong');
-            const playlist = document.querySelector('#Playlist');
+            
             searchPage.style.display = "block"; 
             playlist.style.display = "none";
             singlePage.style.display = "none";
           });
+      });
+      btn2.addEventListener('click', function(e){
+        searchPage.style.display = "none"; 
+        playlist.style.display = "block";
+        singlePage.style.display = "none";
+        const playlist_table = document.querySelector("#Playlist_table");
+        const p_tr = document.createElement("tr");
+        p_tr.setAttribute('id', searchResult.song_id);
+        p_tr.className = "playlist_items"
+        let id = searchResult.song_id;
+        playlist_table.appendChild(p_tr);
+        console.log( document.querySelector('#erase_playlist'));
+        document.querySelector('#erase_playlist').addEventListener('click', function(e) {
+           const remove_all = document.querySelectorAll('.playlist_items');
+           for(let e of remove_all){
+            e.remove();
+           }
+        });
+        let p_td1 = document.createElement("td");
+        let p_td2 = document.createElement("td");
+        let p_td3 = document.createElement("td");
+        let p_td4 = document.createElement("td");
+        let p_td5 = document.createElement("td");
+        let p_td6 = document.createElement("td");
+        p_td1.appendChild(document.createTextNode(searchResult.title));
+        p_td2.appendChild(document.createTextNode(searchResult.artist.name));
+        p_td3.appendChild(document.createTextNode(searchResult.year));
+        p_td4.appendChild(document.createTextNode(searchResult.genre.name));
+        p_td5.appendChild(document.createTextNode(searchResult.details.popularity));
+        let remove = document.createElement("input");
+        remove.value="remove"
+        remove.type="button"
+        p_td6.appendChild(remove);
+        remove.addEventListener("click",function(e){
+          if (p_tr.getAttribute('id') == searchResult.song_id)
+          p_tr.remove();
+          
+        });
+        p_tr.appendChild(p_td1);
+        p_tr.appendChild(p_td2);
+        p_tr.appendChild(p_td3);
+        p_tr.appendChild(p_td4);
+        p_tr.appendChild(p_td5);
+        p_tr.appendChild(p_td6);
+        console.log(document.querySelector('#singleClear_playlist'));
+        document.querySelector('#singleClear_playlist').addEventListener('click', function() {
+          searchPage.style.display = "block"; 
+        playlist.style.display = "none";
+        singlePage.style.display = "none";
+        });
+       
       });
       td1.appendChild(document.createTextNode(searchResult.title));
       td2.appendChild(document.createTextNode(searchResult.artist.name));
@@ -200,6 +250,7 @@ function output_Results(){
       tr.appendChild(td5);
       tr.appendChild(td6);
       tr.appendChild(td7);
+
     }      
 }
 
@@ -294,8 +345,7 @@ document.querySelector("#sort").addEventListener("click", function (e) {
   } 
 });
 });
-//export 
-export default  myArr = searchResults;
+
 
 /* This function outputs the radar chart based off user selection of song */
 function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,liveness){
@@ -452,3 +502,7 @@ window.onclick = function(e) {
 }
 
 
+//Playlist 
+addEventListener("DOMContentLoaded",function(){
+  
+});
