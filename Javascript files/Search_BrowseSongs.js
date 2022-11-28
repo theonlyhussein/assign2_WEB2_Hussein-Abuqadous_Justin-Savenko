@@ -187,10 +187,19 @@ function output_Results(){
             singlePage.style.display = "none";
           });
       });
+      /* This button when actvited it takes a songs id from the tr of the search resluts  
+
+      */
+      let p_count = document.querySelector("#song_count");
+        count_data = document.createElement("span");
       btn2.addEventListener('click', function(e){
+
         searchPage.style.display = "none"; 
         playlist.style.display = "block";
         singlePage.style.display = "none";
+        
+       
+        p_count.appendChild(count_data);
         const playlist_table = document.querySelector("#Playlist_table");
         const p_tr = document.createElement("tr");
         p_tr.setAttribute('id', searchResult.song_id);
@@ -203,6 +212,8 @@ function output_Results(){
            for(let e of remove_all){
             e.remove();
            }
+           count_data.innerHTML = " ";
+           count_data.innerHTML = "0" ;
         });
         let p_td1 = document.createElement("td");
         let p_td2 = document.createElement("td");
@@ -219,10 +230,13 @@ function output_Results(){
         remove.value="remove"
         remove.type="button"
         p_td6.appendChild(remove);
+        count_data.innerHTML = " ";
+        count_data.innerHTML = playlist_table.rows.length-1;
         remove.addEventListener("click",function(e){
           if (p_tr.getAttribute('id') == searchResult.song_id)
           p_tr.remove();
-          
+          count_data.innerHTML = " " ;
+          count_data.innerHTML = playlist_table.rows.length-1 ;
         });
         p_tr.appendChild(p_td1);
         p_tr.appendChild(p_td2);
@@ -501,8 +515,3 @@ window.onclick = function(e) {
   }
 }
 
-
-//Playlist 
-addEventListener("DOMContentLoaded",function(){
-  
-});
