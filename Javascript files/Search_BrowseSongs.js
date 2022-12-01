@@ -1,6 +1,6 @@
 /* The following is in assign2.js as well but Unsure if we need that file at all need further information */
 /* The following two lines declare the api variable connect to the api and locally store the data and then store data in variable from local memory */
-const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
+const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.php';
   /* This function grabs the data from the api, checks to make sure if received promise, if received deal with promise and store locally
      if not then throw error for response and catch all other errors
  */
