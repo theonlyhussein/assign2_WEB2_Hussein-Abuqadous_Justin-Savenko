@@ -14,7 +14,6 @@ const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.
       .then((data) => {
         console.log('Hello');
         localStorage.setItem('songs', JSON.stringify(data));
-        console.log(data);
       })
       .catch((error) => {
         console.log(error)
