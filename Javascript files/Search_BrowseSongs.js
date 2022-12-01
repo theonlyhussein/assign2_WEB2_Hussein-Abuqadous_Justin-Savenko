@@ -231,6 +231,7 @@ const pop_array = [];
         let p_td4 = document.createElement("td");
         let p_td5 = document.createElement("td");
         let p_td6 = document.createElement("td");
+        let p_td7 = document.createElement("td");
         p_td1.appendChild(document.createTextNode(searchResult.title));
         p_td2.appendChild(document.createTextNode(searchResult.artist.name));
         p_td3.appendChild(document.createTextNode(searchResult.year));
@@ -239,9 +240,15 @@ const pop_array = [];
         pop_array.push(searchResult.details.popularity);
         console.log(pop_array);
         let remove = document.createElement("input");
+        let view = document.createElement('input');
+        view.value = 'View Details';
+        view.type = 'button';
         remove.value="remove"
         remove.type="button"
-        p_td6.appendChild(remove);
+        view.setAttribute('data-id',searchResult.song_id);
+        view.setAttribute('data-artistID',searchResult.artist.id);
+        p_td6.appendChild(view);
+        p_td7.appendChild(remove);
         p_count.innerHTML = " ";
         p_count.innerHTML = playlist_table.rows.length-1;
         avg_pop.innerHTML =" ";
@@ -269,14 +276,35 @@ const pop_array = [];
         p_tr.appendChild(p_td4);
         p_tr.appendChild(p_td5);
         p_tr.appendChild(p_td6);
+        p_tr.appendChild(p_td7);
         console.log(document.querySelector('#singleClear_playlist'));
         document.querySelector('#singleClear_playlist').addEventListener('click', function() {
           searchPage.style.display = "block"; 
         playlist.style.display = "none";
         singlePage.style.display = "none";
         });
+      view.addEventListener('click', function(e) {
+        const p_item = e.target.getAttribute("data-id");
+        const p_item2 = e.target.getAttribute("data-artistID");
+        const pSongObj = findSong(p_item);
+        const pArtistObj = findArtist(p_item2);
+        searchPage.style.display = "none"; 
+        playlist.style.display = "none";
+        singlePage.style.display = "block";
+        outputData(pSongObj,pArtistObj);
+        const pChart = outputChart(pSongObj.title,pSongObj.analytics.danceability,pSongObj.analytics.energy,pSongObj.analytics.valence,pSongObj.analytics.speechiness,pSongObj.details.loudness,pSongObj.analytics.liveness);
+        document.querySelector('#singleClear').addEventListener('click', function() {
+          clearData();
+          pChart.destroy();
+          
+          searchPage.style.display = "block"; 
+          playlist.style.display = "none";
+          singlePage.style.display = "none";
+        });
+      });
        
       });
+      console.log(pop_array);
       td1.appendChild(document.createTextNode(searchResult.title));
       td2.appendChild(document.createTextNode(searchResult.artist.name));
       td3.appendChild(document.createTextNode(searchResult.year));
