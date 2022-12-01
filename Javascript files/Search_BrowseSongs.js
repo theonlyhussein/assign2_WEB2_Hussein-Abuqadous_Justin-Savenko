@@ -196,7 +196,7 @@ const pop_array = [];
           });
       });
       /* This button when actvited it takes a songs id from the tr of the search resluts  
-
+         and puts the song into the playlist list 
       */
       
       btn2.addEventListener('click', function(e){
@@ -211,6 +211,8 @@ const pop_array = [];
         let id = searchResult.song_id;
         playlist_table.appendChild(p_tr);
         console.log( document.querySelector('#erase_playlist'));
+        /* this function activates when the clear button is pressed on the playlist page and clears the playlist and switches view back to search
+        */
         document.querySelector('#erase_playlist').addEventListener('click', function(e) {
            const remove_all = document.querySelectorAll('.playlist_items');
            for(let e of remove_all){
@@ -278,14 +280,18 @@ const pop_array = [];
         p_tr.appendChild(p_td6);
         p_tr.appendChild(p_td7);
         console.log(document.querySelector('#singleClear_playlist'));
+        /* This function is activated when clear playlist is clicked and goes back to search */
         document.querySelector('#singleClear_playlist').addEventListener('click', function() {
           searchPage.style.display = "block"; 
         playlist.style.display = "none";
         singlePage.style.display = "none";
         });
+        /* This function is activated when view details is clicked on the playlist page */
       view.addEventListener('click', function(e) {
         const p_item = e.target.getAttribute("data-id");
         const p_item2 = e.target.getAttribute("data-artistID");
+        console.log(e.target.getAttribute("data-id"));
+        console.log(e.target.getAttribute("data-artistID"));
         const pSongObj = findSong(p_item);
         const pArtistObj = findArtist(p_item2);
         searchPage.style.display = "none"; 
