@@ -19,6 +19,7 @@ const api = 'https://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.
         console.log(error)
       });
       }
+      grabAndStoreData();
 /* Returns data based off serial identifier for this assignment serial will always be 'songs' */
 function retreiveStoredData(serial) {
   if(localStorage.getItem(serial) == null) {
@@ -26,7 +27,6 @@ function retreiveStoredData(serial) {
   }
   return JSON.parse(localStorage.getItem(serial));
 }
-const songs = retreiveStoredData('songs'); // array of song data from api
 const artistsOptions = JSON.parse(artists); // array of artists
 const genreOptions = JSON.parse(genres); // array of genres
 const searchResults = []; // initialization of search results array that will be added to based off user input
@@ -56,6 +56,8 @@ document.querySelector("#genre").disabled = true;
 */
 function verifyAnswer(){
   const radioButtons = document.querySelectorAll('input[name="fav"]');
+  const songs = retreiveStoredData('songs');
+  console.log(songs);
   for (const radioButton of radioButtons) {
     if (document.getElementById(radioButton.id).checked && radioButton.id === "title_button"){
       document.querySelector("#title").disabled = false;
@@ -174,9 +176,10 @@ const pop_array = [];
              of singleSong to be shown and also when the clear button is clicked on that display 
              returns it back to the SearchandBrowseSongs view
           */
+          const searchedSongs = retreiveStoredData('songs');
           const item = e.target.getAttribute("data-id");
           const item2 = e.target.getAttribute('data-artistID');
-          const songObj = findSong(item);
+          const songObj = findSong(searchedSongs,item);
           const artistObj = findArtist(item2);
           console.log(songObj.title, songObj.analytics.danceability, songObj.analytics.energy,songObj.analytics.valence, songObj.analytics.speechiness, songObj.details.loudness, songObj.analytics.liveness);
           
@@ -289,11 +292,12 @@ const pop_array = [];
         });
         /* This function is activated when view details is clicked on the playlist page */
       view.addEventListener('click', function(e) {
+        const playlistSongs = retreiveStoredData('songs');
         const p_item = e.target.getAttribute("data-id");
         const p_item2 = e.target.getAttribute("data-artistID");
         console.log(e.target.getAttribute("data-id"));
         console.log(e.target.getAttribute("data-artistID"));
-        const pSongObj = findSong(p_item);
+        const pSongObj = findSong(playlistSongs,p_item);
         const pArtistObj = findArtist(p_item2);
         searchPage.style.display = "none"; 
         playlist.style.display = "none";
@@ -448,7 +452,7 @@ function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,
 /* This function searches through the searchResults array instead of songs array for optimization
    and finds the song ID the user selects and returns the song object
 */
-function findSong(songID){
+function findSong(songs, songID){
     let result = songs.find(s => s.song_id == songID );
     return result;
   }
