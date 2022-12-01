@@ -449,7 +449,7 @@ function outputChart(songTitle,danceability,energy,valence,speechiness,loudness,
    and finds the song ID the user selects and returns the song object
 */
 function findSong(songID){
-    let result = searchResults.find(s => s.song_id == songID );
+    let result = songs.find(s => s.song_id == songID );
     return result;
   }
 /* This function searches through the artist Json and finds the Artist type and returns the artist type string
