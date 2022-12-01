@@ -478,6 +478,7 @@ function outputData(songObj,artistObj){
   const duration = document.createElement('li');
   const ul2 = document.querySelector('#songBreakdown');
   const secondTime = songObj.details.duration % 60;
+  const secondTimeFormat = requireTwoDigit(secondTime);
   const minTime = Math.trunc(songObj.details.duration / 60);
   const bpm = document.createElement('li');
   const bpmProg = document.createElement('progress');
@@ -506,7 +507,7 @@ function outputData(songObj,artistObj){
   ul.appendChild(genre);
   year.textContent = `Year: ${songObj.year}`;
   ul.appendChild(year);
-  duration.textContent = `Duration: ${minTime}:${secondTime}`;
+  duration.textContent = `Duration: ${minTime}:${secondTimeFormat}`;
   ul.appendChild(duration);
   bpmProg.setAttribute('value', songObj.details.bpm);
   bpmProg.setAttribute('max', 200);
@@ -576,5 +577,8 @@ window.onclick = function(e) {
       }
     }
   }
+}
+function requireTwoDigit(n) {
+  return (n < 10 ? '0' : '') + n;
 }
 
