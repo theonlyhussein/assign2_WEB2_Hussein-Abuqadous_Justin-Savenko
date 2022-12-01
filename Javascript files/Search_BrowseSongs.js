@@ -123,8 +123,16 @@ function verifyAnswer(){
     }  
   }
 }
+
+
+
 /* This function outputs the searchResults array to the table based off user input */
 function output_Results(){
+  let p_count = document.querySelector("#song_count");
+console.log(p_count);
+let avg_pop = document.querySelector("#av_popularity");
+console.log(avg_pop);
+const pop_array = [];
   const  table = document.querySelector("#Results_table");
   const pervous_results = document.querySelectorAll("tr");
   for(let pervous_result of pervous_results){
@@ -190,16 +198,12 @@ function output_Results(){
       /* This button when actvited it takes a songs id from the tr of the search resluts  
 
       */
-      let p_count = document.querySelector("#song_count");
-        count_data = document.createElement("span");
+      
       btn2.addEventListener('click', function(e){
-
         searchPage.style.display = "none"; 
         playlist.style.display = "block";
         singlePage.style.display = "none";
         
-       
-        p_count.appendChild(count_data);
         const playlist_table = document.querySelector("#Playlist_table");
         const p_tr = document.createElement("tr");
         p_tr.setAttribute('id', searchResult.song_id);
@@ -212,8 +216,11 @@ function output_Results(){
            for(let e of remove_all){
             e.remove();
            }
-           count_data.innerHTML = " ";
-           count_data.innerHTML = "0" ;
+           p_count.innerHTML = " ";
+           p_count.innerHTML = "0" ;
+           avg_pop.innerHTML=" ";
+           avg_pop.innerHTML="0";
+           pop_array.length=0;
         });
         let p_td1 = document.createElement("td");
         let p_td2 = document.createElement("td");
@@ -226,18 +233,33 @@ function output_Results(){
         p_td3.appendChild(document.createTextNode(searchResult.year));
         p_td4.appendChild(document.createTextNode(searchResult.genre.name));
         p_td5.appendChild(document.createTextNode(searchResult.details.popularity));
+        pop_array.push(searchResult.details.popularity);
+        console.log(pop_array);
         let remove = document.createElement("input");
         remove.value="remove"
         remove.type="button"
         p_td6.appendChild(remove);
-        count_data.innerHTML = " ";
-        count_data.innerHTML = playlist_table.rows.length-1;
+        p_count.innerHTML = " ";
+        p_count.innerHTML = playlist_table.rows.length-1;
+        avg_pop.innerHTML =" ";
+        let sum = pop_array.reduce((a, b) => a + b,0);
+        avg_pop.innerHTML = (sum/pop_array.length).toFixed(0);
         remove.addEventListener("click",function(e){
           if (p_tr.getAttribute('id') == searchResult.song_id)
           p_tr.remove();
-          count_data.innerHTML = " " ;
-          count_data.innerHTML = playlist_table.rows.length-1 ;
-        });
+          p_count.innerHTML = " " ;
+          p_count.innerHTML = playlist_table.rows.length-1 ;
+          let left = pop_array.indexOf(searchResult.details.popularity);
+            pop_array.splice(left,1);
+            avg_pop.innerHTML =" ";
+            sum = pop_array.reduce((a, b) => a + b,0);
+            
+            if(sum.isNaN()){
+              sum = 0;
+            }
+           avg_pop.innerHTML = (sum/pop_array.length).toFixed(0);
+          }
+        );
         p_tr.appendChild(p_td1);
         p_tr.appendChild(p_td2);
         p_tr.appendChild(p_td3);
