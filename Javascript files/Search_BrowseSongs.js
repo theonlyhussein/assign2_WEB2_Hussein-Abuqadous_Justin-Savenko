@@ -256,6 +256,7 @@ const pop_array = [];
         avg_pop.innerHTML =" ";
         let sum = pop_array.reduce((a, b) => a + b,0);
         avg_pop.innerHTML = (sum/pop_array.length).toFixed(0);
+        /* This function is used to update values displayed for playlist details when a song is removed */
         remove.addEventListener("click",function(e){
           if (p_tr.getAttribute('id') == searchResult.song_id)
           p_tr.remove();
