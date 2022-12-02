@@ -85,7 +85,7 @@ div{
 .grid-container {
   display: grid;
   grid-template-columns: 300px 1160px;
-  gap: 10px;
+  gap: 5px;
   
 }
 #grid-item1 {
@@ -93,7 +93,7 @@ div{
   padding-bottom: 15px;
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
-  width: 250px;
+  width: 260px;
 }
 
 #grid-item2 {
@@ -103,11 +103,11 @@ div{
   border: 1px solid rgba(0, 0, 0, 0.8);
   max-height: 450px;
   overflow: scroll;
+  width: 1180px;
+  overflow-x: hidden;
 }
 
-td{
-  text-align: center;
-}
+
 
 .chart{
   position: absolute;
@@ -135,4 +135,35 @@ td{
 progress{
   position: absolute;
   left: 400px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 100%;
+}
+
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  width: 100%;
+}
+
+
+tr:nth-child(even) {
+  background-color: black;
+  color: white;
+}
+
+.play_data{
+  display: inline-block;
+  gap: 5px;
+  padding: 4px;
+}
+
+.back_clearall{
+  align-items: right;
 }

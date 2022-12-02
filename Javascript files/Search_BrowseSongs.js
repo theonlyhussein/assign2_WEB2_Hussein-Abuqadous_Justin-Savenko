@@ -210,8 +210,7 @@ const pop_array = [];
         p_tr.className = "playlist_items"
         let id = searchResult.song_id;
         playlist_table.appendChild(p_tr);
-        console.log( document.querySelector('#erase_playlist'));
-        /* this function activates when the clear button is pressed on the playlist page and clears the playlist and switches view back to search
+        /* this function activates when the clear button is pressed on the playlist page and clears the playlist and returns to search.
         */
         document.querySelector('#erase_playlist').addEventListener('click', function(e) {
            const remove_all = document.querySelectorAll('.playlist_items');
@@ -224,8 +223,8 @@ const pop_array = [];
            avg_pop.innerHTML="0";
            pop_array.length=0;
            searchPage.style.display = "block"; 
-          playlist.style.display = "none";
-          singlePage.style.display = "none";
+        playlist.style.display = "none";
+        singlePage.style.display = "none";
         });
         let p_td1 = document.createElement("td");
         let p_td2 = document.createElement("td");
@@ -266,11 +265,12 @@ const pop_array = [];
             pop_array.splice(left,1);
             avg_pop.innerHTML =" ";
             sum = pop_array.reduce((a, b) => a + b,0);
-            
-            if(sum.isNaN()){
-              sum = 0;
+            let average_popularity = Number((sum/pop_array.length).toFixed(0));
+            if (isNaN(average_popularity) == true ){
+              average_popularity = "0";
             }
-           avg_pop.innerHTML = (sum/pop_array.length).toFixed(0);
+           avg_pop.innerHTML = average_popularity;
+           
           }
         );
         p_tr.appendChild(p_td1);

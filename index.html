@@ -7,6 +7,10 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <script src="https://kit.fontawesome.com/7fad4e8b37.js" crossorigin="anonymous"></script>
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src =  "Javascript files/genres.json"></script>
+   <script src =  "Javascript files/artists.json"></script>
+   <script src="Javascript files/Search_BrowseSongs.js"></script>
+   
 </head>
 <body>
     <div class="dropdown" >
@@ -15,10 +19,7 @@
           <p>Hussein Abuqadous </p>
           <p>Justin Savenko</p>
           <a href="https://github.com/theonlyhussein/assign2_WEB2_Hussein-Abuqadous_Justin-Savenko">Github Repo</a>
-          <script src =  "Javascript files/genres.json"></script>
-          <script src =  "Javascript files/artists.json"></script>
-          <script src="Javascript files/Search_BrowseSongs.js"></script>
-          
+         
         </div>
       </div>
       
@@ -84,9 +85,9 @@
       
       <div id="Playlist" class="tabcontent">
         <h1>Play List </h1> 
-        <p > Number of Songs: <span id="song_count"></span></p>
-        <p >Average Popularity: <span id="av_popularity"></span> </p>
-        <input type="reset" id="singleClear_playlist" value="back"> <input type="reset" id="erase_playlist" value="Clear All">
+        <p class="play_data"> Number of Songs: <span id="song_count"></span></p>
+        <p class="play_data">Average Popularity: <span id="av_popularity"></span> </p> 
+        <input type="reset" id="singleClear_playlist" value="back" align="right"> <input align="right" type="reset" id="erase_playlist" value="Clear All">
         <table id="Playlist_table" style="width:100%">
           <tr>
             <th>Title</th>
