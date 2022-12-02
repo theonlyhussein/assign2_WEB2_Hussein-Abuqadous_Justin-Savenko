@@ -18,6 +18,7 @@ const api = 'http://www.randyconnolly.com/funwebdev/3rd/api/music/songs-nested.p
         console.log(error)
       });
       }
+      grabAndStoreData();
 /* Returns data based off serial identifier for this assignment serial will always be 'songs' */
 function retreiveStoredData(serial) {
   return JSON.parse(localStorage.getItem(serial));
