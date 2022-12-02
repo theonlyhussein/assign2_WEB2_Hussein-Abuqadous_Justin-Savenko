@@ -13,6 +13,7 @@
    
 </head>
 <body>
+    <div class="header">
     <div class="dropdown" >
         <button onclick="dropDown()"class="dropbtn">Credits</button>
         <div id="author" class="dropdown-content">
@@ -24,6 +25,7 @@
       </div>
       
     <h1 id="website_title"> Song Library  </h1>
+  </div>
       <div id="SearchandBrowseSongs" class="tabcontent">
         <h1> Search and Browse songs</h2>
         <div class="grid-container">
@@ -85,9 +87,11 @@
       
       <div id="Playlist" class="tabcontent">
         <h1>Play List </h1> 
+        <div class="header">
         <p class="play_data"> Number of Songs: <span id="song_count"></span></p>
         <p class="play_data">Average Popularity: <span id="av_popularity"></span> </p> 
-        <input type="reset" id="singleClear_playlist" value="back" align="right"> <input align="right" type="reset" id="erase_playlist" value="Clear All">
+        <input type="reset" id="singleClear_playlist" value="back" class="back_clearall"> <input class="back_clearall" type="reset" id="erase_playlist" value="Clear All">
+        </div>        
         <table id="Playlist_table" style="width:100%">
           <tr>
             <th>Title</th>
