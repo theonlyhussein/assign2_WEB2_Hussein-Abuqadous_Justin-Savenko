@@ -189,3 +189,7 @@ progress::-webkit-progress-value {
   border-radius: 3px;
   box-shadow: 1px 1px 5px 3px rgba(124, 113, 113, 0.8);
 }
+footer{
+  position: relative;
+  top: 100px;
+}
