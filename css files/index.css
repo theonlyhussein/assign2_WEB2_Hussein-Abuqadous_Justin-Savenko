@@ -172,3 +172,20 @@ li{
   display: grid;
   grid-template-columns: auto auto;
 }
+progress {
+  border-radius: 7px; 
+  width: 10%;
+  height: 22px;
+  margin-left: 11.5%;
+  box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+}
+progress::-webkit-progress-bar {
+  background-color: rgba(173, 168, 168, 0.904);
+  border-radius: 3px;
+}
+progress::-webkit-progress-value {
+  font-display: grid;
+  background-color: rgba(79, 255, 4, 0.48);
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px 3px rgba(124, 113, 113, 0.8);
+}
