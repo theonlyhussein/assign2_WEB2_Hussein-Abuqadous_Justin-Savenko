@@ -467,7 +467,6 @@ function outputData(songObj,artistObj){
   const popularity = document.createElement('li');
   const popularityProg = document.createElement('progress');
   const popularitySpan = document.createElement('span');
-
   songTitle.textContent = `Song Title: `;
   titleSpan.textContent = `${songObj.title}`;
   songTitle.appendChild(titleSpan);
