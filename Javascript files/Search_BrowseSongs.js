@@ -560,22 +560,19 @@ function clearData() {
     dataset2.removeChild(dataset2.childNodes[0]);
   }
 }
-/* The following function adds the class show to all the childNodes for id author */
-function dropDown() {
-  document.getElementById('author').classList.toggle('show');
-}
-/* The following removes show if the user clicks a secondTime on the button for dropdown-content */
-window.onclick = function(e) {
-  if(!e.target.matches('.dropbtn')) {
-    let drop = document.getElementsByClassName("dropdown-content");
-    for(let i = 0; i < drop.length; i++) {
-      let openDrop = drop[i];
-      if(openDrop.classList.contains('show')) {
-        openDrop.classList.remove('show');
-      }
-    }
-  }
-}
+/* This code selects the elment button(#dropbtn) eventlistener is added to know when user clicks on the  
+button(#dropbtn) #dropdown-content children well be display blocked after 5s  #dropdown-content well be hidden. */
+addEventListener('DOMContentLoaded', () => {
+  document.querySelector('#dropdown #dropbtn').addEventListener("click", function () {
+    document.querySelector("#dropdown-content").style.display="block";
+   setTimeout(function (){ document.querySelector("#dropdown-content").style.display="none" }, 5000);
+     
+  });
+
+});
+
+
+
 /* This function adds a leading zero if the number is below 10 */
 function requireTwoDigit(n) {
   return (n < 10 ? '0' : '') + n;
